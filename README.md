@@ -23,8 +23,14 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-
 ---
+
+学习了阮一峰及一位网友的Redux 莞式教程,通过面向复制粘贴的模式, 总结了`redux`用轮子的方法
+
+[Redux 入门教程_阮一峰](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
+
+[Redux 莞式教程](https://github.com/kenberkeley/redux-simple-tutorial)
+
 ### Store
 store 就是保存数据的容器，是整个应用唯一的，可以想象成项目中存在的唯一的公共变量
 
