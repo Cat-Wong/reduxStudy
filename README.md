@@ -1,27 +1,8 @@
-In the project directory, you can run:
-
 ### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+跑起来！
 
 ### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+打包！
 
 ---
 
@@ -133,7 +114,7 @@ store.dispatch(myAction)  // 改变 state 的唯一方法：dispatch 一个 acti
 ### Reducer
 `Reducer` 必须是一个同步的纯函数，每次 `dispatch(action)` 后都会被触发
 
-`Reducer`的本质是一个函数，根据 `aciton.type` 来更新 `stat`e 并返回 `nextstate`
+`Reducer`的本质是一个函数，根据 `aciton.type` 来更新 `state` 并返回 `nextstate`
 
 最后会用返回的这个 `nextstate` 完全替换 原来的 `state`
 
@@ -225,11 +206,11 @@ export default combineReducers({
 })
 ```
 
-
+- 通过 `combineReducers(reducers) ` 生成`store`
 ```
 //store.js
 import { createStore } from 'redux'
-import reducer from './reducers/index'
+import reducer from './reducers/index'  //combineReducers(reducers) 合并后的reducers
 
 let store = createStore(reducer)
 console.log(store.getState())
