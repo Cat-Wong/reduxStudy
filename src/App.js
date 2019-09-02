@@ -21,8 +21,6 @@ const counter = (state = initState.counter, action) => {
   }
 }
 
-
-
 const todoA = (state = initState.todos, action) => {
   switch (action.type) {
     case 'ADD_TODO':
@@ -32,12 +30,15 @@ const todoA = (state = initState.todos, action) => {
   }
 }
 
-
-//生成store
-const store = createStore(combineReducers({
+//将拆分后的reducer，合并成一个大的reducer集合
+let reducers = combineReducers({
   counter,
   todoA
-}))
+})
+
+//生成store
+const store = createStore(reducers)
+
 console.log(store.getState())
 
 export default store;
