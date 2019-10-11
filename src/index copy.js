@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import store from './App';   //引入store
 import { Provider, connect } from 'react-redux'
+import * as serviceWorker from './serviceWorker';
 
 import { addFn, minFn, todoFn } from './action'   //引入action
 
-// ================
+
+
 // const myrender = () => {
 //   class App extends React.Component {
 //     render () {
@@ -16,17 +18,22 @@ import { addFn, minFn, todoFn } from './action'   //引入action
 //         <div>
 //           <h1>{store.getState().counter}</h1>
 //           <button onClick={() => store.dispatch(addFn)}>自增 </button> {/*dispatch(action)修改state*/}
+
 //           <button onClick={() => store.dispatch(minFn)}>自减 </button>
+
 //           <button onClick={() => store.dispatch(todoFn)}>add text </button>
+
 //           <ul>
 //             {lists}
 //           </ul>
+
 //         </div>
 //       )
 //     }
 //   }
 //   ReactDOM.render(<App />, document.getElementById('root'));
 // }
+
 
 // myrender()
 
@@ -37,58 +44,39 @@ import { addFn, minFn, todoFn } from './action'   //引入action
 // });
 
 
-// =====使用react-redux=======
-class Counter extends React.Component {
-  render () {
-    const { stateTodata, clickAdd, clickMin, liList, clickText } = this.props
+class Counter extends React.Component{
+  render(){
     return (
       <div>
-        <span>{stateTodata}</span><br />
-        <span>这是span标签</span><br />
-        <button onClick={clickAdd}>加1</button><br />
-        <button onClick={clickMin}>减1</button><br />
-        <button onClick={clickText}>add text</button>
-        <ul>
-          {liList}
-        </ul>
+        <span>456</span>
       </div>
     )
   }
 }
 
 
-function mapStateToProps (state) {
+function mapStateToProps(state){
   return {
-    stateTodata: state.counter,
-    liList: listArr(state.todoA)
-  }
-}
-
-function listArr (data) {
-  return data.map((item, index) => {
-    return <li key={index}>{item}--这是通过组件map渲染的</li>
-  })
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    clickAdd: () => dispatch(addFn),
-    clickMin: () => { dispatch(minFn) },
-    clickText: () => { dispatch(todoFn) }
+    data : state.counter
   }
 }
 
 
-const MyApp = connect(
-  mapStateToProps,
-  mapDispatchToProps
+const App = connect(
+  mapStateToProps
 )(Counter)
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <MyApp />
+    <App />
   </Provider>,
   document.getElementById('root')
 );
 
+
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();

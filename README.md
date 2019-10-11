@@ -6,7 +6,7 @@
 
 ---
 
-学习了阮一峰及一位网友的Redux 莞式教程,通过面向复制粘贴的模式, 总结了`redux`用轮子的方法
+学习了阮一峰大神及一位网友的Redux 莞式教程, 总结了`redux`一些基本的用法
 
 [Redux 入门教程_阮一峰](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
 
@@ -24,13 +24,13 @@ let store = createStore(myfunciton);
 
 - `createStore` 通过接受另一个函数（reducer），返回新生成的Store对象
 
-- `createStore` 方法还可以接受第二个参数，表示 State 的最初状态。这通常是服务器给出的。
-
-- 而 `initialState` 主要用于前后端同构的数据同步就是整个应用的状态初始值。注意，如果提供了这个参数，它会覆盖 ` Reducer`  函数的默认初始值。
-
 ```
 const store = createStore(reducer, initialState)   // store 是靠传入 reducer 生成的哦！
 ```
+- `createStore` 方法还可以接受第二个参数 `initialState` ，表示 State 的最初状态。这通常是服务器给出的。
+
+- 而 `initialState` 主要用于前后端同构的数据同步就是整个应用的状态初始值。注意，如果提供了这个参数，它会覆盖 ` Reducer`  函数的默认初始值。
+
 
 `store` 有以下职责
 - 维持应用的 `state`；
