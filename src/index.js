@@ -56,21 +56,20 @@ class Counter extends React.Component {
   }
 }
 
-
-function mapStateToProps (state) {
-  return {
-    stateTodata: state.counter,
-    liList: listArr(state.todoA)
-  }
-}
-
 function listArr (data) {
   return data.map((item, index) => {
     return <li key={index}>{item}--这是通过组件map渲染的</li>
   })
 }
 
-function mapDispatchToProps (dispatch) {
+function mapStateToProps (state) {  //负责输入逻辑 // 把redux的state 映射到ui组件的props   
+  return {                           //返回一个对象，这个对象的属性，组件的props就能通过同名参数获取
+    stateTodata: state.counter,     //会订阅 store，当state更新时，会自动执行，重新计算组件参数，就能重新渲染组件
+    liList: listArr(state.todoA)   //可接受两个参数，第二个参数是ui组件的props对象
+  }
+}
+
+function mapDispatchToProps (dispatch) { //负责输出逻辑   //把发射actions的方法，转为组件的 props 属性函数
   return {
     clickAdd: () => dispatch(addFn),
     clickMin: () => { dispatch(minFn) },
@@ -80,9 +79,9 @@ function mapDispatchToProps (dispatch) {
 
 
 const MyApp = connect(
-  mapStateToProps,
+  mapStateToProps,        
   mapDispatchToProps
-)(Counter)
+)(Counter)    //connect 方法，通过connect 生成容器组件
 
 
 ReactDOM.render(

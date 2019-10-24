@@ -229,3 +229,94 @@ console.log(store.getState())
 //   todos: [ 'Use Redux' ]
 // }
 ```
+
+
+
+
+---
+
+---
+
+
+### react-redux 用法
+
+### UI组件
+- ui组件 就是纯组件，没有业务逻辑，只是在ui上呈现
+
+
+### 容器组件
+- 容器组件是通过数据管理和逻辑，使ui组件进行ui呈现
+- 容器组件是通过 `connect` 方法，传入一个 ui组件 所生成的
+
+### connect()
+` connect()` 方法就是用 UI组件生成容器组件的方法
+
+需要接收两个参数：
+
+- mapStateToProps  输入逻辑 从外部数据变未ui组件的参数
+- mapDispatchToProps   输出逻辑  发生的事件如何变为 `Aciton` 对象
+
+```
+//mapStateToProps 输入逻辑
+//mapDispatchToProps 输出逻辑
+//Counter UI组件
+
+//MyApp 就是一个容器组件
+
+const MyApp = connect(
+  mapStateToProps,        
+  mapDispatchToProps
+)(Counter)    //connect 方法，通过connect 生成容器组件
+
+```
+
+### mapStateToProps()
+- 负责输入逻辑, 把`redux`的`state` 映射到ui组件的`props`  
+- 返回一个对象，这个对象的属性，组件的`props`就能通过同名参数获取
+- 会订阅 `store`，当`state`更新时，会自动执行，重新计算组件参数，就能重新渲染组件
+- 可接受两个参数，第二个参数是ui组件的`props`对象
+```
+function listArr (data) {
+  return data.map((item, index) => {
+    return <li key={index}>{item}--这是通过组件map渲染的</li>
+  })
+}
+
+function mapStateToProps (state) {  
+  return {                      
+    stateTodata: state.counter,    
+    liList: listArr(state.todoA)   
+  }
+}
+```
+
+
+### mapDispatchToProps()
+- 负责输出逻辑   
+- 把发射`actions`的方法，转为组件的`props`属性函数
+```
+function mapDispatchToProps (dispatch) { 
+  return {
+    clickAdd: () => dispatch(addFn),
+    clickMin: () => { dispatch(minFn) },
+    clickText: () => { dispatch(todoFn) }
+  }
+}
+```
+
+
+### <Provider> 组件
+- 通过 `Provider` 组件，可以让容器组件拿到 `state`
+
+
+```
+ReactDOM.render(
+  <Provider store={store}>
+    <MyApp />
+  </Provider>,
+  document.getElementById('root')
+);
+
+```
+
+
