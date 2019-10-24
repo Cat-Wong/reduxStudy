@@ -305,7 +305,7 @@ function mapDispatchToProps (dispatch) {
 ```
 
 
-### <Provider> 组件
+### `<Provider>` 组件
 - 通过 `Provider` 组件，可以让容器组件拿到 `state`
 
 
